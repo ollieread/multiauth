@@ -3,8 +3,9 @@
 use Illuminate\Auth\UserProviderInterface;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\ServiceProvider;
 
-class MultiauthServiceProvider implements UserProviderInterface {
+class MultiauthServiceProvider extends ServiceProvider implements UserProviderInterface {
 	
 	protected $defer = false;
 
@@ -74,5 +75,7 @@ class MultiauthServiceProvider implements UserProviderInterface {
 		
 		return new $class;
 	}
+
+	public function register() { }
 
 }
