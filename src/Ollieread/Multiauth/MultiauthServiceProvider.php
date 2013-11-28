@@ -2,7 +2,7 @@
 
 use Illuminate\Auth\UserProviderInterface;
 use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\GenericUser;
+use Illuminate\Support\Facades\Config;
 
 class MultiauthServiceProvider implements UserProviderInterface {
 
