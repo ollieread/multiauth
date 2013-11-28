@@ -4,7 +4,7 @@ use Illuminate\Auth\UserProviderInterface;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Support\Facades\Config;
 
-class MultiauthServiceProvider implements UserProviderInterface {
+class MultiauthServiceProvider extends ServiceProvider implements UserProviderInterface {
 
 	protected $providers;
 	
