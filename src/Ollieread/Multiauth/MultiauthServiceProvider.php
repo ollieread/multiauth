@@ -5,6 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class MultiauthServiceProvider extends ServiceProvider implements UserProviderInterface {
 	
