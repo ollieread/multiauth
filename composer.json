@@ -1,7 +1,7 @@
 {
     "name": "ollieread/multiauth",
     "description": "Multiple auth driver for Laravel",
-	"version": "0.1.1-beta",
+	"version": "0.1.2-beta",
 	"keywords": ["laravel", "multi", "auth"],
     "authors": [
         {
