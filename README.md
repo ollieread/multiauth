@@ -41,6 +41,6 @@ When you log a user in, just make sure to pass in a provider, like this:
     	'email'		=> $attributes['email'],
     	'password'	=> $attributes['password'],
     	'provider'	=> 'account'
-    );
+    ));
 
 There we go, done! Enjoy yourselves.
