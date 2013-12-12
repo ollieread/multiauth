@@ -9,7 +9,7 @@ Sometimes you'll have a project where you require multiple types of users, and a
 Firstly you want to include this package in your composer.json file.
 
     "require": {
-    		"ollieread/multiauth": "*"
+    		"ollieread/multiauth": "1.*"
     }
 
 Next you'll want to modify app/start/global.php to extend the Auth provider.
