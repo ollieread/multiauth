@@ -1,46 +1,92 @@
 # Laravel Multi Auth #
 
-A custom auth driver to allow for multiple authentication models.
+This package is not a replacement for laravels default Auth library, but instead something
+that sits between your code and the library.
 
-Sometimes you'll have a project where you require multiple types of users, and a single table with a column to switch wouldn't suffice.
+Think of it as a factory class for Auth. Now, instead of having a single table/model to
+authenticate users against, you can now have multiple, and unlike the previous version of
+this package, you have access to all functions, and can even use a different driver 
+for each user type.
 
 ## Installation ##
 
 Firstly you want to include this package in your composer.json file.
 
     "require": {
-    		"ollieread/multiauth": "1.*"
+    		"ollieread/multiauth": "2.0.*@dev"
     }
 
-Next you'll want to modify app/start/global.php to extend the Auth provider.
+Next you open up app/config/app.php and replace the AuthServerProvider with
 
-    Auth::extend('multi', function($app) {
-    	$provider = new Ollieread\Multiauth\MultiauthServiceProvider();
-    	
-    	return new \Illuminate\Auth\Guard($provider, $app['session.store']);
-    });
+    Ollieread\Multiauth\MultiauthServiceProvider
 
-Configuration is pretty easy too, just modify app/config/auth.php as follows:
+Configuration is pretty easy too, take app/config/auth.php with its default values:
 
     return array(
-    
-    	'driver' => 'multi',
-    	
-    	'multi'	=> array(
-    		'account'	=> 'Account',
-    		'user'		=> 'User'
-    	)
-    
-    );
+
+		'driver' => 'eloquent',
+
+		'model' => 'User',
+
+		'table' => 'users',
+
+		'reminder' => array(
+
+			'email' => 'emails.auth.reminder',
+
+			'table' => 'password_reminders',
+
+			'expire' => 60,
+
+		),
+
+	);
+
+Now remove the first three options and replace as follows:
+
+   return array(
+
+		'multi'	=> array(
+			'account' => array(
+				'driver' => 'eloquent',
+				'model'	=> 'Account'
+			),
+			'user' => array(
+				'driver' => 'database',
+				'table' => 'users'
+			)
+		),
+
+		'reminder' => array(
+
+			'email' => 'emails.auth.reminder',
+
+			'table' => 'password_reminders',
+
+			'expire' => 60,
+
+		),
+
+	);
+
 
 ## Usage ##
 
-When you log a user in, just make sure to pass in a provider, like this:
+Everything is done the exact same way as the original library, the one exception being
+that all method calls are prefixed with the key (account or user in the above examples)
+as a method itself.
 
-    Auth::attempt(array(
+    Auth::account()->attempt(array(
     	'email'		=> $attributes['email'],
     	'password'	=> $attributes['password'],
-    	'provider'	=> 'account'
     ));
+    Auth::user()->attempt(array(
+    	'email'		=> $attributes['email'],
+    	'password'	=> $attributes['password'],
+    ));
+    Auth::account()->check();
+    Auth::user()->check();
+
+And so on and so forth.
 
 There we go, done! Enjoy yourselves.
