@@ -47,7 +47,7 @@ Configuration is pretty easy too, take app/config/auth.php with its default valu
 
 Now remove the first three options and replace as follows:
 
-   return array(
+    return array(
 
 		'multi'	=> array(
 			'account' => array(
