@@ -93,3 +93,7 @@ as a method itself.
 And so on and so forth.
 
 There we go, done! Enjoy yourselves.
+
+## Known Bugs ##
+
+Reminders don't currently work.
