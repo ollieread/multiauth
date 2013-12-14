@@ -16,7 +16,7 @@ in as a user, a master account and an admin, without conflicts!
 Firstly you want to include this package in your composer.json file.
 
     "require": {
-    		"ollieread/multiauth": "2.0.*@dev"
+    		"ollieread/multiauth": "dev-master"
     }
 
 Next you open up app/config/app.php and replace the AuthServerProvider with
