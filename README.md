@@ -19,7 +19,7 @@ Firstly you want to include this package in your composer.json file.
     		"ollieread/multiauth": "dev-master"
     }
 
-Next you open up app/config/app.php and replace the AuthServerProvider with
+Next you open up app/config/app.php and replace the AuthServiceProvider with
 
     Ollieread\Multiauth\MultiauthServiceProvider
 
