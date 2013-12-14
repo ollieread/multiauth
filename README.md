@@ -8,6 +8,9 @@ authenticate users against, you can now have multiple, and unlike the previous v
 this package, you have access to all functions, and can even use a different driver 
 for each user type.
 
+On top of that, you can use multiple authentication types, simultaneously, so you can be logged
+in as a user, a master account and an admin, without conflicts!
+
 ## Installation ##
 
 Firstly you want to include this package in your composer.json file.
