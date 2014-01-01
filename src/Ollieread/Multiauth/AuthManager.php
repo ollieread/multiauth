@@ -58,8 +58,13 @@ class AuthManager extends OriginalAuthManager {
 		return new EloquentUserProvider($this->app['hash'], $model);
 	}
 	
-	protected function getDefaultDriver() {
+	public function getDefaultDriver() {
 		return $this->config['driver'];
 	}
-	
+
+	public function setDefaultDriver($name)
+	{
+		$this->config['driver'] = $name;
+	}
+
 }
