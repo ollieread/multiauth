@@ -2,6 +2,7 @@
     "name": "ollieread/multiauth",
     "description": "Multiple auth driver for Laravel",
 	"keywords": ["laravel", "multi", "auth"],
+	"license": "MIT",
     "authors": [
         {
             "name": "Ollie Read",
