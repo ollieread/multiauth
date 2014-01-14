@@ -1,5 +1,8 @@
 # Laravel Multi Auth #
 
+Laravel: 4.1
+Author: Ollie Read <http://ollieread.com>
+
 This package is not a replacement for laravels default Auth library, but instead something
 that sits between your code and the library.
 
@@ -115,5 +118,5 @@ Reminders don't currently work.
 
 ### License
 
-This package inherits the licensing of its parent frame, Laravel, and as such is open-sourced 
+This package inherits the licensing of its parent framework, Laravel, and as such is open-sourced 
 software licensed under the [MIT license](http://opensource.org/licenses/MIT)
