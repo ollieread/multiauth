@@ -22,4 +22,14 @@ class Guard extends OriginalGuard {
 		return 'remember_' . $this->name . '_' . md5(get_class($this));
 	}
 	
+	public function get() {
+		return $this->user();
+	}
+	
+	public function impersonate($type, $id, $remember = false) {
+		if($this->check()) {
+			return Auth::$type()->loginUsingId($id, $remember);
+		}
+	}
+	
 }
