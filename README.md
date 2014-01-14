@@ -90,6 +90,21 @@ as a method itself.
     Auth::account()->check();
     Auth::user()->check();
 
+I found that have to call the user() method on a user type called user() looked messy, so
+I have added in a nice get method to wrap around it.
+
+	Auth::user()->get();
+
+In the instance where you have a user type that can impersonate another user type, example being
+an admin impersonating a user to recreate or check something, I added in an impersonate() method
+which simply wraps loginUsingId() on the request user type.
+
+	Auth::admin()->impersonate('user', 1, true);
+
+The first argument is the user type, the second is the id of said user, and the third is
+whether or not to remember the user, which will default to false, so can be left out
+more often than not.
+
 And so on and so forth.
 
 There we go, done! Enjoy yourselves.
