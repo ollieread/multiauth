@@ -1,7 +1,8 @@
 # Laravel Multi Auth #
 
-Laravel: 4.1
-Author: Ollie Read <http://ollieread.com>
+- **Laravel**: 4.1
+- **Author**: Ollie Read 
+- **Author Homepage**: http://ollieread.com
 
 This package is not a replacement for laravels default Auth library, but instead something
 that sits between your code and the library.
