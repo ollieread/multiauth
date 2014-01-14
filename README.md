@@ -112,3 +112,8 @@ There we go, done! Enjoy yourselves.
 ## Known Bugs ##
 
 Reminders don't currently work.
+
+### License
+
+This package inherits the licensing of its parent frame, Laravel, and as such is open-sourced 
+software licensed under the [MIT license](http://opensource.org/licenses/MIT)
