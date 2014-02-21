@@ -13,12 +13,6 @@ class MultiauthServiceProvider extends ServiceProvider {
 			
 			return new MultiManager($app);
 		});
-		
-		$this->app['command.multiauth.reminders-table'] = $this->app->share(function($app) {
-			return new RemindersTableCommand($app['files']);
-		});
-		
-		$this->commands('command.multiauth.reminders-table');
 	}
 
 }
