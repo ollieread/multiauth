@@ -25,7 +25,7 @@ Firstly you want to include this package in your composer.json file.
 
 Next you open up app/config/app.php and replace the AuthServiceProvider with
 
-    Ollieread\Multiauth\MultiauthServiceProvider
+    "Ollieread\Multiauth\MultiauthServiceProvider"
 
 Configuration is pretty easy too, take app/config/auth.php with its default values:
 
@@ -76,6 +76,51 @@ Now remove the first three options and replace as follows:
 
 	);
 
+## Reminders ##
+
+If you wish to use reminders, you will need to replace ReminderServiceProvider in you 
+app/config/app.php file with the following.
+
+	Ollieread\Multiauth\Reminders\ReminderServiceProvider
+
+To generate the reminders table you will need to run the following command.
+
+	php artisan multiauth:reminders-table
+
+The `reminders-controller` command has been removed, as it wouldn't work with the
+way this package handles authentication. I do plan to look into this in the future.
+
+The concept is the same as the default Auth reminders, except you access everything
+the same way you do using the rest of this package, in that prefix methods with the
+authentication type.
+
+To send a reminder you would do the following.
+
+	Password::account()->remind(Input::only('email'), function($message) {
+		$message->subject('Password reminder');
+	});
+
+And to reset a password you would do the following.
+
+	Password::account()->reset($credentials, function($user, $password) {
+		$user->password = Hash::make($password);
+		$user->save();
+	});
+
+For simple identification of which token belongs to which user, as it's perfectly feasible
+that we could have two different users, of different types, with the same token, I've modified my reminder
+email to have a type attribute.
+
+	To reset your password, complete this form: {{ URL::to('password/reset', array($type, $token)) }}.
+
+This generates a URL like the following.
+
+	http://laravel.ollieread.com/password/reset/account/27eb8fe5fe666b3b8d0521156bbf53266dbca572
+
+Which matches the following route.
+
+	Route::any('/password/reset/{type}/{token}', 'Controller@method');
+
 
 ## Usage ##
 
@@ -112,10 +157,6 @@ more often than not.
 And so on and so forth.
 
 There we go, done! Enjoy yourselves.
-
-## Known Bugs ##
-
-Reminders don't currently work.
 
 ### License
 
