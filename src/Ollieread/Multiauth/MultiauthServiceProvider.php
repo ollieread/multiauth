@@ -1,6 +1,7 @@
 <?php namespace Ollieread\Multiauth;
 
 use Illuminate\Support\ServiceProvider;
+use Ollieread\Multiauth\Console\RemindersTableCommand;
 
 class MultiauthServiceProvider extends ServiceProvider {
 	
