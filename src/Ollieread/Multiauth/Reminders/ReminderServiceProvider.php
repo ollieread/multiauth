@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Ollieread\Multiauth\Console\RemindersTableCommand;
+use Ollieread\Multiauth\Console\ClearRemindersCommand;
 use Ollieread\Multiauth\Reminders\DatabaseReminderRepository as DbRepository;
 
 class ReminderServiceProvider extends ServiceProvider {
@@ -102,7 +103,7 @@ class ReminderServiceProvider extends ServiceProvider {
 		});
 
 		$this->commands(
-			'command.multiauth.reminders', 'command.multiauth.clear'
+			'command.multiauth.reminders', 'command.multiauth.reminders.clear'
 		);
 	}
 
