@@ -1,4 +1,4 @@
-<?php namespace Illuminate\Auth\Console;
+<?php namespace Olliread\Multiauth\Console;
 
 use Illuminate\Console\Command;
 

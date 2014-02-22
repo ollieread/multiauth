@@ -102,7 +102,7 @@ class ReminderServiceProvider extends ServiceProvider {
 		});
 
 		$this->commands(
-			'command.multiauth.reminders', 'comment.multiauth.clear'
+			'command.multiauth.reminders', 'command.multiauth.clear'
 		);
 	}
 
