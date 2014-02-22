@@ -90,6 +90,10 @@ To generate the reminders table you will need to run the following command.
 
 	php artisan multiauth:reminders-table
 
+Likewise, if you want to clear all reminders, you have to run the following command.
+
+	php artisan multiauth:clear-reminders
+
 The `reminders-controller` command has been removed, as it wouldn't work with the
 way this package handles authentication. I do plan to look into this in the future.
 
