@@ -3,6 +3,7 @@
 use Illuminate\Auth\Guard as OriginalGuard;
 use Illuminate\Auth\UserProviderInterface;
 use Illuminate\Session\Store as SessionStore;
+use Illuminate\Support\Facades\Auth;
 
 class Guard extends OriginalGuard {
 	
