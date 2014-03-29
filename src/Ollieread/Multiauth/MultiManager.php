@@ -23,4 +23,14 @@ class MultiManager {
 		}
 	}
 	
+	public function getAuthenticatedTypes() {
+		$authenticated = array();
+		
+		foreach($this->providers as $name => $provider) {
+			if($provider->check()) $authenticated[] = $name;
+		}
+
+		return $authenticated;
+	}
+	
 }
