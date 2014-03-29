@@ -23,6 +23,10 @@ class MultiManager {
 		}
 	}
 	
+	/**
+	 * [getAuthenticatedTypes Gives you an array which just includes the names of the providers currently authenticated]
+	 * @return [array] [the authenticated providers]
+	 */
 	public function getAuthenticatedTypes() {
 		$authenticated = array();
 		
