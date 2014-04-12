@@ -18,6 +18,10 @@ for each user type.
 On top of that, you can use multiple authentication types, simultaneously, so you can be logged
 in as a user, a master account and an admin, without conflicts!
 
+## Custom Auth Drivers ##
+
+At this current moment in time, custom Auth drivers written for the base Auth class will not work. I'm currently looking into this particular issue but for the meantime, you can work around this by changing your closure to return an instance of `Ollieread\Multiauth\Guard` instead of the default.
+
 ## Installation ##
 
 Firstly you want to include this package in your composer.json file.
