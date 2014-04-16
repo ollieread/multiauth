@@ -169,6 +169,15 @@ And so on and so forth.
 
 There we go, done! Enjoy yourselves.
 
+## Testing ##
+
+Laravel integration/controller testing implements `$this->be($user)` to the base TestCase class. The implementation of #be() does not work correctly with Multiauth. To get around this, implement your own version of #be() as follows:
+
+    public function authenticateAs($type, $user) {
+      $this->app['auth']->$type()->setUser($user);
+    }
+
+
 ### License
 
 This package inherits the licensing of its parent framework, Laravel, and as such is open-sourced 
