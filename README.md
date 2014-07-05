@@ -29,10 +29,16 @@ Firstly you want to include this package in your composer.json file.
     "require": {
     		"ollieread/multiauth": "dev-master"
     }
+    
+Now you'll want to update or install via composer.
+
+    composer update
 
 Next you open up app/config/app.php and replace the AuthServiceProvider with
 
     "Ollieread\Multiauth\MultiauthServiceProvider"
+
+**NOTE** It is very important that you replace the default service providers. If you do not wish to use Reminders, then remove the original Reminder server provider as it will cause errors.
 
 Configuration is pretty easy too, take app/config/auth.php with its default values:
 
