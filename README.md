@@ -175,6 +175,14 @@ And so on and so forth.
 
 There we go, done! Enjoy yourselves.
 
+## Filters ##
+
+As to be expected, since the original Auth syntax of `Auth::guest()` no longer works, neither do the default
+filters. You can modify the filters to be something like `auth.admin` and `auth.user` but just remember, they will
+no longer work. 
+
+For an example of the old auth filter, and how to fix it, see this gist: https://gist.github.com/ollieread/8303638
+
 ## Testing ##
 
 Laravel integration/controller testing implements `$this->be($user)` to the base TestCase class. The implementation of #be() does not work correctly with Multiauth. To get around this, implement your own version of #be() as follows:
