@@ -111,6 +111,9 @@ The concept is the same as the default Auth reminders, except you access everyth
 the same way you do using the rest of this package, in that prefix methods with the
 authentication type.
 
+If you wish to use a different view per user type, then just add an email option to the config,
+much the same way as it is inside `auth.reminder`.
+
 To send a reminder you would do the following.
 
 	Password::account()->remind(Input::only('email'), function($message) {
