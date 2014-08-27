@@ -6,13 +6,10 @@ class PasswordBrokerManager {
 	
 	protected $brokers = array();
 	
-	public function __construct(ReminderRepositoryInterface $reminders,
-                                Mailer $mailer,
-                                $reminderView,
-								$providers)
+	public function __construct(ReminderRepositoryInterface $reminders, Mailer $mailer, $reminderViews, $providers)
 	{
 		foreach($providers as $type => $provider) {
-			$this->brokers[$type] = new PasswordBroker($type, $reminders, $provider, $mailer, $reminderView);
+			$this->brokers[$type] = new PasswordBroker($type, $reminders, $provider, $mailer, $reminderViews[$type]);
 		}
 	}
 	
