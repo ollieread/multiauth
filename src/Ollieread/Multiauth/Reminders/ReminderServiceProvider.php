@@ -46,7 +46,7 @@ class ReminderServiceProvider extends ServiceProvider {
 			
 			foreach($app['config']['auth.multi'] as $type => $config) {
 				$providers[$type] = $app['auth']->$type()->driver()->getProvider();
-                $views[$type] = $config['email'] ? $config['email'] : $app['config']['auth.reminder']['email'];
+                $views[$type] = isset($config['email']) ? $config['email'] : $app['config']['auth.reminder']['email'];
 			}
 
 			// The password broker uses the reminder repository to validate tokens and send
