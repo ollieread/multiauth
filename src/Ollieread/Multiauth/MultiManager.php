@@ -1,14 +1,21 @@
 <?php namespace Ollieread\Multiauth;
 
+use Illuminate\Foundation\Application;
+
 class MultiManager {
 	
+	
+	/**
+	 * @var Illuminate\Foundation\Application $app
+	 */
+	 
 	protected $app;
 	
 	protected $config;
 	
 	protected $providers = array();
 	
-	public function __construct($app) {
+	public function __construct(Application $app) {
 		$this->app = $app;
 		$this->config = $this->app['config']['auth.multi'];
 		
