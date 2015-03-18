@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Olliereadl5\\Multiauth": "src/"
+            "Olliereadl5\\Multiauth\\": "src/"
         }
     }
 }
