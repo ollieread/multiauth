@@ -1,5 +1,5 @@
 {
-    "name": "ollieread/multiauth",
+    "name": "olliereadl5/multiauth",
     "description": "Multiple auth driver for Laravel",
 	"keywords": ["laravel", "multi", "auth"],
 	"license": "MIT",
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ollieread\\Multiauth": "src/"
+            "Olliereadl5\\Multiauth": "src/"
         }
     }
 }
