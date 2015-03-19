@@ -19,11 +19,10 @@
     },
     "autoload": {
        	"classmap": [
-	      "src/Maatwebsite/Excel",
-	      "tests/TestCase.php"
+	      "src/Ollieread/Multiauth"
 	    ],
 	    "psr-0": {
-	      "Maatwebsite\\Excel\\": "src/"
+	      "Ollieread\\Multiauth\\": "src/"
 	    }
     }
 }
