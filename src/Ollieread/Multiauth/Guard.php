@@ -1,15 +1,21 @@
 <?php namespace Ollieread\Multiauth;
 
 use Illuminate\Auth\Guard as OriginalGuard;
-use Illuminate\Auth\UserProviderInterface;
-use Illuminate\Session\Store as SessionStore;
+use Illuminate\Contracts\Auth\UserProvider;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Illuminate\Support\Facades\Auth;
 
 class Guard extends OriginalGuard {
 	
 	protected $name;
-	
-	public function __construct(UserProviderInterface $provider, SessionStore $session, $name, Request $request = null) {
+
+    /**
+     * @param \Illuminate\Contracts\Auth\UserProvider\UserProvider $provider
+     * @param \Symfony\Component\HttpFoundation\Session\SessionInterface $session
+     * @param \Symfony\Component\HttpFoundation\Request $name
+     * @param Request $request
+     */
+	public function __construct(UserProvider $provider, SessionInterface $session, $name, Request $request = null) {
 		parent::__construct($provider, $session, $request);
 		
 		$this->name = $name;
