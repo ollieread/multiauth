@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/ollieread/multiauth/v/stable.png)](https://packagist.org/packages/ollieread/multiauth) [![Total Downloads](https://poser.pugx.org/ollieread/multiauth/downloads.png)](https://packagist.org/packages/ollieread/multiauth) [![Latest Unstable Version](https://poser.pugx.org/ollieread/multiauth/v/unstable.png)](https://packagist.org/packages/ollieread/multiauth) [![License](https://poser.pugx.org/ollieread/multiauth/license.png)](https://packagist.org/packages/ollieread/multiauth)
 
 
-- **Laravel**: 4.2
+- **Laravel**: 5.0
 - **Author**: Ollie Read 
 - **Author Homepage**: http://ollieread.com
 
@@ -27,7 +27,7 @@ At this current moment in time, custom Auth drivers written for the base Auth cl
 Firstly you want to include this package in your composer.json file.
 
     "require": {
-    		"ollieread/multiauth": "dev-master"
+    		"ollieread/multiauth": "dev-l5"
     }
     
 Now you'll want to update or install via composer.
@@ -86,6 +86,13 @@ Now remove the first three options and replace as follows:
 			'expire' => 60,
 
 		),
+		
+		 'globals' => [
+		 
+    		'user',	'check'
+    		
+    	],
+
 
 	);
 
