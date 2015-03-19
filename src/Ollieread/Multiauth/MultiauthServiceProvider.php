@@ -1,12 +1,13 @@
 <?php namespace Ollieread\Multiauth;
 
 use Illuminate\Support\ServiceProvider;
-use Ollieread\Multiauth\Console\RemindersTableCommand;
 
+/**
+ * Class MultiauthServiceProvider
+ * @package Ollieread\Multiauth
+ */
 class MultiauthServiceProvider extends ServiceProvider
 {
-
-    protected $defer = false;
 
     /**
      * Register the service provider.
@@ -26,9 +27,14 @@ class MultiauthServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
     public function provides()
     {
-        return array('auth');
+        return ['auth'];
     }
 
 }
