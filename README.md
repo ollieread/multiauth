@@ -172,7 +172,9 @@ whatever its type just add the method names in the 'globals' array in the config
 
 	Auth::user();
 	Auth::check();
+	
 Instead of:
+
 	Auth::user()->user();
 	Auth::user()->check();
 	
