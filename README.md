@@ -27,7 +27,7 @@ At this current moment in time, custom Auth drivers written for the base Auth cl
 Firstly you want to include this package in your composer.json file.
 
     "require": {
-    		"ollieread/multiauth": "dev-l5"
+    		"ollieread/multiauth": "dev-master"
     }
     
 Now you'll want to update or install via composer.
@@ -166,11 +166,16 @@ as a method itself.
     Auth::account()->check();
     Auth::user()->check();
 
-I found that have to call the user() method on a user type called user() looked messy, so
-I have added in a nice get method to wrap around it.
+If you need to call methods as the way of the original library,i.e. to get the authenticated user 
+whatever its type just add the method names in the 'globals' array in the config file,now you can
+ use it directly as the following:
 
-	Auth::user()->get();
-
+	Auth::user();
+	Auth::check();
+Instead of:
+	Auth::user()->user();
+	Auth::user()->check();
+	
 In the instance where you have a user type that can impersonate another user type, example being
 an admin impersonating a user to recreate or check something, I added in an impersonate() method
 which simply wraps loginUsingId() on the request user type.
