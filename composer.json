@@ -1,5 +1,5 @@
 {
-    "name": "ollieread/multiauth",
+    "name": "olliereadl5/multiauth",
     "description": "Multiple auth driver for Laravel",
 	"keywords": ["laravel", "multi", "auth"],
 	"license": "MIT",
@@ -11,15 +11,18 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/auth": "~4.1",
-        "illuminate/console": "~4.1",
-        "illuminate/database": "~4.1",
-        "illuminate/filesystem": "~4.1",
-        "illuminate/support": "~4.1"
+        "illuminate/auth": "~5.0",
+        "illuminate/console": "~5.0",
+        "illuminate/database": "~5.0",
+        "illuminate/filesystem": "~5.0",
+        "illuminate/support": "~5.0"
     },
     "autoload": {
-        "psr-0": {
-            "Ollieread\\Multiauth": "src/"
-        }
+       	"classmap": [
+	      "src/Ollieread/Multiauth"
+	    ],
+	    "psr-0": {
+	      "Ollieread\\Multiauth\\": "src/"
+	    }
     }
 }

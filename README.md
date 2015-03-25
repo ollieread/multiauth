@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/ollieread/multiauth/v/stable.png)](https://packagist.org/packages/ollieread/multiauth) [![Total Downloads](https://poser.pugx.org/ollieread/multiauth/downloads.png)](https://packagist.org/packages/ollieread/multiauth) [![Latest Unstable Version](https://poser.pugx.org/ollieread/multiauth/v/unstable.png)](https://packagist.org/packages/ollieread/multiauth) [![License](https://poser.pugx.org/ollieread/multiauth/license.png)](https://packagist.org/packages/ollieread/multiauth)
 
 
-- **Laravel**: 4.2
+- **Laravel**: 5.0
 - **Author**: Ollie Read 
 - **Author Homepage**: http://ollieread.com
 
@@ -86,6 +86,13 @@ Now remove the first three options and replace as follows:
 			'expire' => 60,
 
 		),
+		
+		 'globals' => [
+		 
+    		'user',	'check'
+    		
+    	],
+
 
 	);
 
@@ -159,11 +166,18 @@ as a method itself.
     Auth::account()->check();
     Auth::user()->check();
 
-I found that have to call the user() method on a user type called user() looked messy, so
-I have added in a nice get method to wrap around it.
+If you need to call methods as the way of the original library,i.e. to get the authenticated user 
+whatever its type just add the method names in the 'globals' array in the config file,now you can
+ use it directly as the following:
 
-	Auth::user()->get();
+	Auth::user();
+	Auth::check();
+	
+Instead of:
 
+	Auth::user()->user();
+	Auth::user()->check();
+	
 In the instance where you have a user type that can impersonate another user type, example being
 an admin impersonating a user to recreate or check something, I added in an impersonate() method
 which simply wraps loginUsingId() on the request user type.
