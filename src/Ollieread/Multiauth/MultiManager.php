@@ -29,10 +29,12 @@ class MultiManager {
 	public function __call($name, $arguments = array()) {
 		
 		if(array_key_exists($name, $this->providers)) {
-			if(null != $this->globals && in_array($name, $this->globals)){
-				return $this->providers[$name]->$name();
-			}else{
-				return $this->providers[$name];
+			return $this->providers[$name];
+		}else{
+			foreach($this->providers as $provider){
+				if(null !== $provider->$name()){
+					return $provider->$name();
+				}
 			}
 		}
 	}

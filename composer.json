@@ -18,8 +18,11 @@
         "illuminate/support": "~5.0"
     },
     "autoload": {
-        "psr-4": {
-            "Ollieread\\Multiauth\\": "src/"
-        }
+       	"classmap": [
+	      "src/Ollieread/Multiauth"
+	    ],
+	    "psr-0": {
+	      "Ollieread\\Multiauth\\": "src/"
+	    }
     }
 }
