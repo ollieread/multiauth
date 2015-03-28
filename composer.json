@@ -25,5 +25,6 @@
         "psr-4": {
             "Ollieread\\Multiauth\\": "src/Ollieread/Multiauth/"
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
