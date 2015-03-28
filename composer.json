@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ollieread\\Multiauth": "src/Ollierad/Multiauth/"
+            "Ollieread\\Multiauth\\": "src/Ollierad/Multiauth/"
         }
     }
 }
