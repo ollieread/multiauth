@@ -1,11 +1,10 @@
 # Laravel Multi Auth #
 
-[![Latest Stable Version](https://poser.pugx.org/ollieread/multiauth/v/stable.png)](https://packagist.org/packages/ollieread/multiauth) [![Total Downloads](https://poser.pugx.org/ollieread/multiauth/downloads.png)](https://packagist.org/packages/ollieread/multiauth) [![Latest Unstable Version](https://poser.pugx.org/ollieread/multiauth/v/unstable.png)](https://packagist.org/packages/ollieread/multiauth) [![License](https://poser.pugx.org/ollieread/multiauth/license.png)](https://packagist.org/packages/ollieread/multiauth)
+- **Laravel**: 5
+- **Author**: Ramon Ackermann
+- **Author Homepage**: https://github.com/sboo
 
-
-- **Laravel**: 4.2
-- **Author**: Ollie Read 
-- **Author Homepage**: http://ollieread.com
+For Laravel 4.2 version, see https://github.com/ollieread/multiauth
 
 This package is not a replacement for laravels default Auth library, but instead something
 that sits between your code and the library.
@@ -27,7 +26,7 @@ At this current moment in time, custom Auth drivers written for the base Auth cl
 Firstly you want to include this package in your composer.json file.
 
     "require": {
-    		"ollieread/multiauth": "dev-master"
+    		"sboo/multiauth": "dev-master"
     }
     
 Now you'll want to update or install via composer.
@@ -40,69 +39,61 @@ Next you open up app/config/app.php and replace the AuthServiceProvider with
 
 **NOTE** It is very important that you replace the default service providers. If you do not wish to use Reminders, then remove the original Reminder server provider as it will cause errors.
 
-Configuration is pretty easy too, take app/config/auth.php with its default values:
+Configuration is pretty easy too, take config/auth.php with its default values:
 
-    return array(
+    return [
 
 		'driver' => 'eloquent',
 
-		'model' => 'User',
+		'model' => 'App\User',
 
 		'table' => 'users',
 
-		'reminder' => array(
+		'password' => [
+        		'email' => 'emails.password',
+        		'table' => 'password_resets',
+        		'expire' => 60,
+        	],
 
-			'email' => 'emails.auth.reminder',
-
-			'table' => 'password_reminders',
-
-			'expire' => 60,
-
-		),
-
-	);
+	];
 
 Now remove the first three options and replace as follows:
 
     return array(
 
-		'multi'	=> array(
-			'account' => array(
+		'multi'	=> [
+			'account' => [
 				'driver' => 'eloquent',
 				'model'	=> 'Account'
-			),
-			'user' => array(
+			],
+			'user' => [
 				'driver' => 'database',
 				'table' => 'users'
-			)
-		),
+			]
+		],
 
-		'reminder' => array(
-
-			'email' => 'emails.auth.reminder',
-
-			'table' => 'password_reminders',
-
-			'expire' => 60,
-
-		),
+		'password' => [
+        		'email' => 'emails.password',
+        		'table' => 'password_resets',
+        		'expire' => 60,
+        	],
 
 	);
 
 ## Reminders ##
 
-If you wish to use reminders, you will need to replace ReminderServiceProvider in you 
-app/config/app.php file with the following.
+If you wish to use reminders, you will need to replace Illuminate\Auth\Passwords\PasswordResetServiceProvider in you
+config/app.php file with the following.
 
-	Ollieread\Multiauth\Reminders\ReminderServiceProvider
+	Ollieread\Multiauth\Passwords\PasswordResetServiceProvider
 
 To generate the reminders table you will need to run the following command.
 
-	php artisan multiauth:reminders-table
+	php artisan multiauth:resets-table
 
 Likewise, if you want to clear all reminders, you have to run the following command.
 
-	php artisan multiauth:clear-reminders
+	php artisan multiauth:clear-resets
 
 The `reminders-controller` command has been removed, as it wouldn't work with the
 way this package handles authentication. I do plan to look into this in the future.
@@ -178,13 +169,6 @@ And so on and so forth.
 
 There we go, done! Enjoy yourselves.
 
-## Filters ##
-
-As to be expected, since the original Auth syntax of `Auth::guest()` no longer works, neither do the default
-filters. You can modify the filters to be something like `auth.admin` and `auth.user` but just remember, they will
-no longer work. 
-
-For an example of the old auth filter, and how to fix it, see this gist: https://gist.github.com/ollieread/8303638
 
 ## Testing ##
 

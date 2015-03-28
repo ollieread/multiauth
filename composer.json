@@ -1,9 +1,13 @@
 {
     "name": "ollieread/multiauth",
     "description": "Multiple auth driver for Laravel",
-	"keywords": ["laravel", "multi", "auth"],
+	"keywords": ["laravel", "laravel 5", "multi", "auth"],
 	"license": "MIT",
     "authors": [
+        {
+          "name": "Ramon Ackermann",
+          "email": "ramon.ackermann@sboo.eu"
+        },
         {
             "name": "Ollie Read",
             "email": "labs@ollieread.com"
@@ -18,8 +22,8 @@
         "illuminate/support": "5.0.*"
     },
     "autoload": {
-        "psr-0": {
-            "Ollieread\\Multiauth": "src/"
+        "psr-4": {
+            "Ollieread\\Multiauth": "src/Ollierad/Multiauth/"
         }
     }
 }
