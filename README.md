@@ -3,6 +3,8 @@
 - **Laravel**: 5
 - **Author**: Ramon Ackermann
 - **Author Homepage**: https://github.com/sboo
+- **Author**: Ollie Read
+- **Author Homepage**: http://ollieread.com
 
 For Laravel 4.2 version, see https://github.com/ollieread/multiauth
 
