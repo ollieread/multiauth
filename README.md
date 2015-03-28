@@ -167,6 +167,10 @@ more often than not.
 
 And so on and so forth.
 
+
+Check this gist for the modified files in a default Laravel 5 installation:
+https://gist.github.com/sboo/10943f39429b001dd9d0
+
 There we go, done! Enjoy yourselves.
 
 
