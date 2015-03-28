@@ -3,14 +3,14 @@
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
-class RemindersTableCommand extends Command {
+class PasswordResetsTableCommand extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'multiauth:reminders-table';
+	protected $name = 'multiauth:resets-table';
 
 	/**
 	 * The console command description.
@@ -51,8 +51,6 @@ class RemindersTableCommand extends Command {
 		$this->files->put($fullPath, $this->getMigrationStub());
 
 		$this->info('Migration created successfully!');
-
-		$this->call('dump-autoload');
 	}
 
 	/**
@@ -62,9 +60,9 @@ class RemindersTableCommand extends Command {
 	 */
 	protected function createBaseMigration()
 	{
-		$name = 'create_password_reminders_table';
+		$name = 'create_password_resets_table';
 
-		$path = $this->laravel['path'].'/database/migrations';
+		$path = base_path().'/database/migrations';
 
 		return $this->laravel['migration.creator']->create($name, $path);
 	}
@@ -78,7 +76,7 @@ class RemindersTableCommand extends Command {
 	{
 		$stub = $this->files->get(__DIR__.'/stubs/reminders.stub');
 
-		return str_replace('password_reminders', $this->getTable(), $stub);
+		return str_replace('password_resets', $this->getTable(), $stub);
 	}
 
 	/**
@@ -88,7 +86,7 @@ class RemindersTableCommand extends Command {
 	 */
 	protected function getTable()
 	{
-		return $this->laravel['config']->get('auth.reminder.table');
+		return $this->laravel['config']->get('auth.password.table');
 	}
 
 }
