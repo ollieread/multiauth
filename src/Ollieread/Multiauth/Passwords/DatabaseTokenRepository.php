@@ -1,10 +1,11 @@
-<?php namespace Ollieread\Multiauth\Reminders;
+<?php namespace Ollieread\Multiauth\Passwords;
 
 use Carbon\Carbon;
-use Illuminate\Database\Connection;
-use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Database\ConnectionInterface;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class DatabaseReminderRepository implements ReminderRepositoryInterface {
+
+class DatabaseTokenRepository implements TokenRepositoryInterface {
 
 	/**
 	 * The database connection instance.
@@ -34,16 +35,16 @@ class DatabaseReminderRepository implements ReminderRepositoryInterface {
 	 */
 	protected $expires;
 
-	/**
-	 * Create a new reminder repository instance.
-	 *
-	 * @param  \Illuminate\Database\Connection  $connection
-	 * @param  string  $table
-	 * @param  string  $hashKey
-	 * @param  int  $expires
-	 * @return void
-	 */
-	public function __construct(Connection $connection, $table, $hashKey, $expires = 60)
+    /**
+     * Create a new token repository instance.
+     *
+     * @param  \Illuminate\Database\ConnectionInterface  $connection
+     * @param  string  $table
+     * @param  string  $hashKey
+     * @param  int  $expires
+     * @return void
+     */
+	public function __construct(ConnectionInterface $connection, $table, $hashKey, $expires = 60)
 	{
 		$this->table = $table;
 		$this->hashKey = $hashKey;
@@ -54,12 +55,12 @@ class DatabaseReminderRepository implements ReminderRepositoryInterface {
 	/**
 	 * Create a new reminder record and token.
 	 *
-	 * @param  \Illuminate\Auth\Reminders\RemindableInterface  $user
+	 * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
 	 * @return string
 	 */
-	public function create(RemindableInterface $user, $type)
+	public function create(CanResetPasswordContract $user, $type)
 	{
-		$email = $user->getReminderEmail();
+		$email = $user->getEmailForPasswordReset();
 
 		// We will create a new, random token for the user so that we can e-mail them
 		// a safe link to the password reset form. Then we will insert a record in
@@ -71,11 +72,23 @@ class DatabaseReminderRepository implements ReminderRepositoryInterface {
 		return $token;
 	}
 
+    /**
+     * Delete all existing reset tokens from the database.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @return int
+     */
+    protected function deleteExisting(CanResetPasswordContract $user, $type)
+    {
+        return $this->getTable()->where('email', $user->getEmailForPasswordReset())->where('type', $type)->delete();
+    }
+
 	/**
 	 * Build the record payload for the table.
 	 *
 	 * @param  string  $email
 	 * @param  string  $token
+     * @param $type
 	 * @return array
 	 */
 	protected function getPayload($email, $token, $type)
@@ -83,18 +96,19 @@ class DatabaseReminderRepository implements ReminderRepositoryInterface {
 		return array('type' => $type, 'email' => $email, 'token' => $token, 'created_at' => new Carbon);
 	}
 
-	/**
-	 * Determine if a reminder record exists and is valid.
-	 *
-	 * @param  \Illuminate\Auth\Reminders\RemindableInterface  $user
-	 * @param  string  $token
-	 * @return bool
-	 */
-	public function exists(RemindableInterface $user, $token, $type)
+    /**
+     * Determine if a token record exists and is valid.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $token
+     * @param $type
+     * @return bool
+     */
+	public function exists(CanResetPasswordContract $user, $token, $type)
 	{
-		$email = $user->getReminderEmail();
+		$email = $user->getEmailForPasswordReset();
 
-		$reminder = $this->getTable()->where('email', $email)->where('token', $token)->where('type', $type)->first();
+		$reminder = $this->getTable()->where('email', $email)->where('token', $token)->first();
 
 		return $reminder && ! $this->reminderExpired($reminder);
 	}
@@ -145,19 +159,15 @@ class DatabaseReminderRepository implements ReminderRepositoryInterface {
 		$this->getTable()->where('created_at', '<', $expired)->delete();
 	}
 
-	/**
-	 * Create a new token for the user.
-	 *
-	 * @param  \Illuminate\Auth\Reminders\RemindableInterface  $user
-	 * @return string
-	 */
-	public function createNewToken(RemindableInterface $user)
+    /**
+     * Create a new token for the user.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @return string
+     */
+	public function createNewToken(CanResetPasswordContract $user)
 	{
-		$email = $user->getReminderEmail();
-
-		$value = str_shuffle(sha1($email.spl_object_hash($this).microtime(true)));
-
-		return hash_hmac('sha1', $value, $this->hashKey);
+        return hash_hmac('sha256', str_random(40), $this->hashKey);
 	}
 
 	/**

@@ -2,14 +2,14 @@
 
 use Illuminate\Console\Command;
 
-class ClearRemindersCommand extends Command {
+class ClearPasswordResetsCommand extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'multiauth:clear-reminders';
+	protected $name = 'multiauth:clear-resets';
 
 	/**
 	 * The console command description.
@@ -25,7 +25,7 @@ class ClearRemindersCommand extends Command {
 	 */
 	public function fire()
 	{
-		$this->laravel['auth.reminder.repository']->deleteExpired();
+		$this->laravel['auth.token.repository']->deleteExpired();
 
 		$this->info('Expired reminders cleared!');
 	}
