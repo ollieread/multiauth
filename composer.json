@@ -1,5 +1,5 @@
 {
-    "name": "ollieread/multiauth",
+    "name": "sboo/multiauth",
     "description": "Multiple auth driver for Laravel",
 	"keywords": ["laravel", "laravel 5", "multi", "auth"],
 	"license": "MIT",
