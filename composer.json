@@ -1,6 +1,6 @@
 {
     "name": "sboo/multiauth",
-    "description": "Multiple auth driver for Laravel",
+    "description": "Multiple auth driver for Laravel 5",
 	"keywords": ["laravel", "laravel 5", "multi", "auth"],
 	"license": "MIT",
     "authors": [
@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ollieread\\Multiauth\\": "src/Ollierad/Multiauth/"
+            "Ollieread\\Multiauth\\": "src/Ollieread/Multiauth/"
         }
     }
 }
