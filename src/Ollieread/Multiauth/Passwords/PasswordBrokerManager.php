@@ -1,4 +1,4 @@
-<?php namespace Ollieread\Multiauth\Reminders;
+<?php namespace Ollieread\Multiauth\Passwords;
 
 use Illuminate\Mail\Mailer;
 
@@ -6,10 +6,10 @@ class PasswordBrokerManager {
 	
 	protected $brokers = array();
 	
-	public function __construct(ReminderRepositoryInterface $reminders, Mailer $mailer, $reminderViews, $providers)
+	public function __construct(TokenRepositoryInterface $tokens, Mailer $mailer, $reminderViews, $providers)
 	{
 		foreach($providers as $type => $provider) {
-			$this->brokers[$type] = new PasswordBroker($type, $reminders, $provider, $mailer, $reminderViews[$type]);
+			$this->brokers[$type] = new PasswordBroker($type, $tokens, $provider, $mailer, $reminderViews[$type]);
 		}
 	}
 	
