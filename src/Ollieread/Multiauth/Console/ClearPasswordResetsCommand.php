@@ -25,7 +25,7 @@ class ClearPasswordResetsCommand extends Command {
 	 */
 	public function fire()
 	{
-		$this->laravel['auth.token.repository']->deleteExpired();
+		$this->laravel['auth.password.tokens']->deleteExpired();
 
 		$this->info('Expired reminders cleared!');
 	}
