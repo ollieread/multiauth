@@ -121,7 +121,11 @@ class DatabaseTokenRepository implements TokenRepositoryInterface {
      */
     protected function tokenExpired($token)
     {
-        $createdPlusHour = strtotime($token['created_at']) + $this->expires;
+        $timestamp = is_array($token['created_at']) && array_key_exists('date', $token['created_at']) ?
+            $token['created_at']['date'] :
+            $token['created_at'];
+
+        $createdPlusHour = strtotime($timestamp) + $this->expires;
 
         return $createdPlusHour < $this->getCurrentTime();
     }
