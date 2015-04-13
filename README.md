@@ -38,12 +38,12 @@ Now you'll want to update or install via composer.
 
 Next you open up app/config/app.php and replace the 'Illuminate\Auth\AuthServiceProvider', with
 ```php
-    'Ollieread\Multiauth\MultiauthServiceProvider
+    'Ollieread\Multiauth\MultiauthServiceProvider',
 ```
 
 and 'Illuminate\Auth\Passwords\PasswordResetServiceProvider' with
 ```php
-	Ollieread\Multiauth\Passwords\PasswordResetServiceProvider
+	Ollieread\Multiauth\Passwords\PasswordResetServiceProvider',
 ```	
 
 **NOTE** It is very important that you replace the default service providers.
@@ -111,7 +111,9 @@ Likewise, if you want to clear all reminders, you have to run the following comm
 	php artisan multiauth:clear-resets
 
 
-You will also need to change the existing default Laravel 5 files to accomodate multiple auth and password types. Do as described in this gist:
+You will also need to change the existing default Laravel 5 files to accommodate multiple auth and password types. 
+Do as described in this gist:
+
 https://gist.github.com/sboo/10943f39429b001dd9d0
 
 ## Usage ##
