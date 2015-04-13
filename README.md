@@ -43,7 +43,7 @@ Next you open up app/config/app.php and replace the 'Illuminate\Auth\AuthService
 
 and 'Illuminate\Auth\Passwords\PasswordResetServiceProvider' with
 ```php
-	Ollieread\Multiauth\Passwords\PasswordResetServiceProvider',
+	'Ollieread\Multiauth\Passwords\PasswordResetServiceProvider',
 ```	
 
 **NOTE** It is very important that you replace the default service providers.
