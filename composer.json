@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ollieread\\Multiauth\\": "src/Ollieread/Multiauth/"
+            "Ollieread\\Multiauth\\": "src/"
         }
     },
     "minimum-stability": "stable"
