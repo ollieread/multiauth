@@ -26,23 +26,34 @@ At this current moment in time, custom Auth drivers written for the base Auth cl
 ## Installation ##
 
 Firstly you want to include this package in your composer.json file.
-
+```javascript
     "require": {
     		"sboo/multiauth" : "4.0.*"
     }
-    
+```
+   
 Now you'll want to update or install via composer.
 
     composer update
 
-Next you open up app/config/app.php and replace the AuthServiceProvider with
+Next you open up app/config/app.php and replace the 'Illuminate\Auth\AuthServiceProvider', with
+```php
+    'Ollieread\Multiauth\MultiauthServiceProvider
+```
 
-    "Ollieread\Multiauth\MultiauthServiceProvider"
+and 'Illuminate\Auth\Passwords\PasswordResetServiceProvider' with
+```php
+	Ollieread\Multiauth\Passwords\PasswordResetServiceProvider
+```	
 
-**NOTE** It is very important that you replace the default service providers. If you do not wish to use Reminders, then remove the original Reminder server provider as it will cause errors.
+**NOTE** It is very important that you replace the default service providers.
 
-Configuration is pretty easy too, take config/auth.php with its default values:
+Remove the original database migration for password_resets.
 
+##Configuration##
+
+is pretty easy too, take config/auth.php with its default values:
+```php
     return [
 
 		'driver' => 'eloquent',
@@ -58,19 +69,21 @@ Configuration is pretty easy too, take config/auth.php with its default values:
         	],
 
 	];
+```
 
-Now remove the first three options and replace as follows:
-
-    return array(
+Now remove the first three options (driver, model and table) and replace as follows:
+```php
+    return [
 
 		'multi'	=> [
-			'account' => [
+			'admin' => [
 				'driver' => 'eloquent',
-				'model'	=> 'Account'
+				'model'	=> 'App\Admin',
 			],
-			'user' => [
+			'client' => [
 				'driver' => 'database',
-				'table' => 'users'
+				'table' => 'clients'
+				'email' => 'client.emails.password',
 			]
 		],
 
@@ -80,14 +93,14 @@ Now remove the first three options and replace as follows:
         		'expire' => 60,
         	],
 
-	);
+	];
+```
+	
+This is an example configuration. Note that you will have to create Models and migrations for each type of user. 
+Use App\User.php and 2014_10_12_000000_create_users_table.php as an example. 
 
-## Reminders ##
+If you wish to use a reminders email view per usertype, simply add an email option to the type, as shown in the above example.
 
-If you wish to use reminders, you will need to replace Illuminate\Auth\Passwords\PasswordResetServiceProvider in you
-config/app.php file with the following.
-
-	Ollieread\Multiauth\Passwords\PasswordResetServiceProvider
 
 To generate the reminders table you will need to run the following command.
 
@@ -97,71 +110,40 @@ Likewise, if you want to clear all reminders, you have to run the following comm
 
 	php artisan multiauth:clear-resets
 
-The `reminders-controller` command has been removed, as it wouldn't work with the
-way this package handles authentication. I do plan to look into this in the future.
 
-The concept is the same as the default Auth reminders, except you access everything
-the same way you do using the rest of this package, in that prefix methods with the
-authentication type.
-
-If you wish to use a different view per user type, then just add an email option to the config,
-much the same way as it is inside `auth.reminder`.
-
-To send a reminder you would do the following.
-
-	Password::account()->remind(Input::only('email'), function($message) {
-		$message->subject('Password reminder');
-	});
-
-And to reset a password you would do the following.
-
-	Password::account()->reset($credentials, function($user, $password) {
-		$user->password = Hash::make($password);
-		$user->save();
-	});
-
-For simple identification of which token belongs to which user, as it's perfectly feasible
-that we could have two different users, of different types, with the same token, I've modified my reminder
-email to have a type attribute.
-
-	To reset your password, complete this form: {{ URL::to('password/reset', array($type, $token)) }}.
-
-This generates a URL like the following.
-
-	http://laravel.ollieread.com/password/reset/account/27eb8fe5fe666b3b8d0521156bbf53266dbca572
-
-Which matches the following route.
-
-	Route::any('/password/reset/{type}/{token}', 'Controller@method');
-
+You will also need to change the existing default Laravel 5 files to accomodate multiple auth and password types. Do as described in this gist:
+https://gist.github.com/sboo/10943f39429b001dd9d0
 
 ## Usage ##
 
 Everything is done the exact same way as the original library, the one exception being
 that all method calls are prefixed with the key (account or user in the above examples)
 as a method itself.
-
-    Auth::account()->attempt(array(
+```php
+    Auth::admin()->attempt(array(
     	'email'		=> $attributes['email'],
     	'password'	=> $attributes['password'],
     ));
-    Auth::user()->attempt(array(
+    Auth::client()->attempt(array(
     	'email'		=> $attributes['email'],
     	'password'	=> $attributes['password'],
     ));
-    Auth::account()->check();
-    Auth::user()->check();
+    Auth::admin()->check();
+    Auth::client()->check();
+```
 
 I found that have to call the user() method on a user type called user() looked messy, so
 I have added in a nice get method to wrap around it.
-
-	Auth::user()->get();
+```php
+	Auth::admin()->get();
+```
 
 In the instance where you have a user type that can impersonate another user type, example being
 an admin impersonating a user to recreate or check something, I added in an impersonate() method
 which simply wraps loginUsingId() on the request user type.
-
-	Auth::admin()->impersonate('user', 1, true);
+```php
+	Auth::admin()->impersonate('client', 1, true);
+```
 
 The first argument is the user type, the second is the id of said user, and the third is
 whether or not to remember the user, which will default to false, so can be left out
@@ -170,20 +152,17 @@ more often than not.
 And so on and so forth.
 
 
-Check this gist for the modified files in a default Laravel 5 installation:
-https://gist.github.com/sboo/10943f39429b001dd9d0
-
 There we go, done! Enjoy yourselves.
 
 
 ## Testing ##
 
 Laravel integration/controller testing implements `$this->be($user)` to the base TestCase class. The implementation of #be() does not work correctly with Multiauth. To get around this, implement your own version of #be() as follows:
-
+```php
     public function authenticateAs($type, $user) {
       $this->app['auth']->$type()->setUser($user);
     }
-
+```
 
 ### License
 
