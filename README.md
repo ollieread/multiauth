@@ -82,7 +82,7 @@ Now remove the first three options (driver, model and table) and replace as foll
 			],
 			'client' => [
 				'driver' => 'database',
-				'table' => 'clients'
+				'table' => 'clients',
 				'email' => 'client.emails.password',
 			]
 		],
