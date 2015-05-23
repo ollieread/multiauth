@@ -21,8 +21,7 @@ class MultiManager
      */
     public function __construct(Application $app)
     {
-        foreach ($app['config']['auth.multi'] as $key => $config)
-        {
+        foreach ($app['config']['auth.multi'] as $key => $config) {
             $this->providers[$key] = new AuthManager($app, $key, $config);
         }
     }
@@ -33,8 +32,7 @@ class MultiManager
      */
     public function __call($name, $arguments = array())
     {
-        if (array_key_exists($name, $this->providers))
-        {
+        if (array_key_exists($name, $this->providers)) {
             return $this->providers[$name];
         }
     }
