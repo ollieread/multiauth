@@ -19,10 +19,10 @@ class Guard extends OriginalGuard
     protected $name;
 
     /**
-     * @param \Illuminate\Contracts\Auth\UserProvider                    $provider
+     * @param \Illuminate\Contracts\Auth\UserProvider $provider
      * @param \Symfony\Component\HttpFoundation\Session\SessionInterface $session
-     * @param string                                                     $name
-     * @param \Symfony\Component\HttpFoundation\Request                  $request
+     * @param string $name
+     * @param \Symfony\Component\HttpFoundation\Request $request
      */
     public function __construct(UserProvider $provider, SessionInterface $session, $name, Request $request = null)
     {
@@ -73,8 +73,7 @@ class Guard extends OriginalGuard
      */
     public function impersonate($type, $id, $remember = false)
     {
-        if ($this->check())
-        {
+        if ($this->check()) {
             return Auth::$type()->loginUsingId($id, $remember);
         }
     }
