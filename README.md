@@ -8,6 +8,17 @@
 
 For Laravel 4.2 version, see https://github.com/ollieread/multiauth
 
+**IMPORTANT: Laravel 5.1**
+Default AuthController with its traits
+
+\Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers,
+more specifically Illuminate\Foundation\Auth\AuthenticatesUsers::postLogin() does not work!
+For the time being, you need to write your own Controller for this. I will work on it if I have time.
+
+--------------------------------------------------------------------------------------------------
+
+
+
 This package is not a replacement for laravels default Auth library, but instead something
 that sits between your code and the library.
 
