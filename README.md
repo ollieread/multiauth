@@ -7,7 +7,7 @@
 - **Author**: Ollie Read 
 - **Author Homepage**: http://ollieread.com
 
-This package is not a replacement for laravels default Auth library, but instead something
+This package is not a replacement for Laravel's default Auth library, but instead something
 that sits between your code and the library.
 
 Think of it as a factory class for Auth. Now, instead of having a single table/model to
