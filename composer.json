@@ -1,30 +1,25 @@
 {
-    "name": "sboo/multiauth",
-    "description": "Multiple auth driver for Laravel 5",
-	"keywords": ["laravel", "laravel 5", "multi", "auth"],
+    "name": "ollieread/multiauth",
+    "description": "Multiple auth driver for Laravel",
+	"keywords": ["laravel", "multi", "auth"],
 	"license": "MIT",
     "authors": [
-        {
-          "name": "Ramon Ackermann",
-          "email": "ramon.ackermann@sboo.eu"
-        },
         {
             "name": "Ollie Read",
             "email": "labs@ollieread.com"
         }
     ],
     "require": {
-      "php": ">=5.4.0",
-      "illuminate/auth":  "~5.0|~5.1",
-      "illuminate/console": "~5.0|~5.1",
-      "illuminate/database":  "~5.0|~5.1",
-      "illuminate/filesystem":  "~5.0|~5.1",
-      "illuminate/support":  "~5.0|~5.1"
+        "php": ">=5.3.0",
+        "illuminate/auth": "~4.1",
+        "illuminate/console": "~4.1",
+        "illuminate/database": "~4.1",
+        "illuminate/filesystem": "~4.1",
+        "illuminate/support": "~4.1"
     },
     "autoload": {
-        "psr-4": {
-            "Ollieread\\Multiauth\\": "src/"
+        "psr-0": {
+            "Ollieread\\Multiauth": "src/"
         }
-    },
-    "minimum-stability": "stable"
+    }
 }
