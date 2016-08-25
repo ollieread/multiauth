@@ -24,7 +24,7 @@ class MultiManager {
 		}
 	}
 	
-	public function __call($name, $arguments = array()) {
+	public function __call($name, $arguments) {
 		if(array_key_exists($name, $this->providers)) {
 			return $this->providers[$name];
 		}
