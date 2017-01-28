@@ -1,5 +1,6 @@
 <?php namespace Ollieread\Multiauth;
 
+use Illuminate\Support\Manager;
 use Illuminate\Auth\AuthManager as OriginalAuthManager;
 use Illuminate\Auth\DatabaseUserProvider;
 use Illuminate\Auth\EloquentUserProvider;
@@ -26,7 +27,7 @@ class AuthManager extends OriginalAuthManager {
 	}
 	
 	protected function callCustomCreator($driver) {
-		$custom = parent::callCustomCreator($driver);
+		$custom = Manager::callCustomCreator($driver);
 
 		if ($custom instanceof Guard) return $custom;
 
