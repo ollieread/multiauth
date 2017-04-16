@@ -30,4 +30,18 @@ class MultiManager {
 		}
 	}
 	
+	/**
+	 * [getAuthenticatedTypes Gives you an array which just includes the names of the providers currently authenticated]
+	 * @return [array] [the authenticated providers]
+	 */
+	public function getAuthenticatedTypes() {
+		$authenticated = array();
+		
+		foreach($this->providers as $name => $provider) {
+			if($provider->check()) $authenticated[] = $name;
+		}
+
+		return $authenticated;
+	}
+	
 }
