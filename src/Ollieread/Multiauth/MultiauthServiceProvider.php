@@ -10,8 +10,8 @@ class MultiauthServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bindShared('auth', function ($app) {
-            $app['auth.loaded'] = true;
+        $this->app->bindShared('multiauth', function ($app) {
+            $app['multiauth.loaded'] = true;
 
             return new MultiManager($app);
         });
@@ -19,7 +19,7 @@ class MultiauthServiceProvider extends ServiceProvider
 
     public function provides()
     {
-        return array('auth');
+        return array('multiauth');
     }
 
 }
