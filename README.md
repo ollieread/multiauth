@@ -1,3 +1,7 @@
+# THIS PACKAGE HAS BEEN DISCONTINUED #
+It is no longer supported or maintained, and is being replaced by [auth+](https://github.com/lara-plus/auth-plus).
+
+
 # Laravel Multi Auth #
 
 [![Latest Stable Version](https://poser.pugx.org/ollieread/multiauth/v/stable.png)](https://packagist.org/packages/ollieread/multiauth) [![Total Downloads](https://poser.pugx.org/ollieread/multiauth/downloads.png)](https://packagist.org/packages/ollieread/multiauth) [![Latest Unstable Version](https://poser.pugx.org/ollieread/multiauth/v/unstable.png)](https://packagist.org/packages/ollieread/multiauth) [![License](https://poser.pugx.org/ollieread/multiauth/license.png)](https://packagist.org/packages/ollieread/multiauth)
