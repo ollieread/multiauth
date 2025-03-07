@@ -7,7 +7,7 @@
 ![Packagist Version](https://img.shields.io/packagist/v/ollieread/multiauth)
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/ollieread/multiauth)
 ![GitHub](https://img.shields.io/github/license/ollieread/multiauth)
-![Laravel](https://img.shields.io/badge/laravel-11.x-red.svg)
+![Laravel](https://img.shields.io/badge/laravel-12.x-red.svg)
 [![codecov](https://codecov.io/gh/ollieread/multiauth/branch/1.x/graph/badge.svg?token=FHJ41NQMTA)](https://codecov.io/gh/ollieread/multiauth)
 ![Unit Tests](https://github.com/ollieread/multiauth/actions/workflows/tests.yml/badge.svg)
 ![Static Analysis](https://github.com/ollieread/multiauth/actions/workflows/static-analysis.yml/badge.svg)
