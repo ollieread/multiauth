@@ -1,4 +1,6 @@
-/vendor
-composer.phar
+/vendor/
 composer.lock
-.DS_Store
+/wiki/
+/build/
+.phpunit.result.cache
+/tests/_Original

@@ -1,0 +1,25 @@
+providers:
+  - Multiauth\MultiauthServiceProvider
+
+migrations:
+  - workbench/database/migrations
+
+seeders:
+  - Database\Seeders\DatabaseSeeder
+
+workbench:
+  start: '/'
+  install: true
+  health: false
+  discovers:
+    web: false
+    api: false
+    commands: false
+    components: false
+    views: false
+  build:
+    - asset-publish
+    - create-sqlite-db
+    - migrate:refresh
+  assets: []
+  sync: []
