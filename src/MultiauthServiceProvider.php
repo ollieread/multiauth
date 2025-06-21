@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Multiauth;
+namespace Ollieread\Multiauth;
 
 use Illuminate\Support\ServiceProvider;
 

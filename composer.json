@@ -1,83 +1,79 @@
 {
-    "name": "ollieread/multiauth",
-    "description": "Alternative auth system for Laravel",
-    "type": "library",
-    "keywords": [
-        "laravel",
-        "multiauth",
-        "auth",
-        "authentication",
-        "authorisation",
-        "alternative"
-    ],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Ollie Read",
-            "email": "code@ollieread.com"
-        }
-    ],
-    "require": {
-        "php": "^8.2",
-        "laravel/framework": "^12.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^11.0.1",
-        "orchestra/testbench": "*",
-        "larastan/larastan": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Multiauth\\": "src/"
-        }
-    },
-    "minimum-stability": "stable",
-    "scripts": {
-        "post-autoload-dump": [
-            "@clear",
-            "@prepare",
-            "@php vendor/bin/testbench package:discover --ansi"
-        ],
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "build": "@php vendor/bin/testbench workbench:build --ansi",
-        "serve": [
-            "Composer\\Config::disableProcessTimeout",
-            "@build",
-            "@php vendor/bin/testbench serve --ansi"
-        ],
-        "analyse": [
-            "@php vendor/bin/phpstan analyse --memory-limit=2G --verbose --ansi"
-        ],
-        "test": [
-            "@clear",
-            "@prepare",
-            "@build",
-            "@php vendor/bin/phpunit --testsuite=Unit,Feature"
-        ],
-        "lint": [
-            "@php vendor/bin/phpstan analyse --verbose --ansi"
-        ]
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Multiauth\\MultiauthServiceProvider"
-            ],
-            "facades": []
-        },
-        "branch-alias": {
-            "dev-main": "4.x-dev"
-        }
-    },
-    "config": {
-        "allow-plugins": []
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "App\\": "workbench/app/",
-            "Database\\Factories\\": "workbench/database/factories/",
-            "Database\\Seeders\\": "workbench/database/seeders/"
-        }
+  "name"             : "ollieread/multiauth",
+  "description"      : "Alternative auth system for Laravel",
+  "type"             : "library",
+  "keywords"         : [
+    "laravel",
+    "multiauth",
+    "auth",
+    "authentication",
+    "authorisation",
+    "alternative"
+  ],
+  "license"          : "MIT",
+  "authors"          : [
+    {
+      "name" : "Ollie Read",
+      "email": "code@ollieread.com"
     }
+  ],
+  "require"          : {
+    "php"              : "^8.2",
+    "laravel/framework": "^12.0"
+  },
+  "require-dev"      : {
+    "phpunit/phpunit"    : "^11.0.1",
+    "orchestra/testbench": "^10.0",
+    "larastan/larastan"  : "^3.0"
+  },
+  "autoload"         : {
+    "psr-4": {
+      "Ollieread\\Multiauth\\": "src/"
+    }
+  },
+  "minimum-stability": "stable",
+  "scripts"          : {
+    "post-autoload-dump": [
+      "@clear",
+      "@prepare",
+      "@php vendor/bin/testbench package:discover --ansi"
+    ],
+    "clear"             : "@php vendor/bin/testbench package:purge-skeleton --ansi",
+    "prepare"           : "@php vendor/bin/testbench package:discover --ansi",
+    "build"             : "@php vendor/bin/testbench workbench:build --ansi",
+    "serve"             : [
+      "Composer\\Config::disableProcessTimeout",
+      "@build",
+      "@php vendor/bin/testbench serve --ansi"
+    ],
+    "analyse"           : [
+      "@php vendor/bin/phpstan analyse --memory-limit=2G --verbose --ansi"
+    ],
+    "test"              : [
+      "@clear",
+      "@prepare",
+      "@build",
+      "@php vendor/bin/phpunit --testsuite=Unit,Feature"
+    ]
+  },
+  "extra"            : {
+    "laravel"     : {
+      "providers": [
+        "Ollieread\\Multiauth\\MultiauthServiceProvider"
+      ],
+      "facades"  : []
+    },
+    "branch-alias": {
+    }
+  },
+  "config"           : {
+    "allow-plugins": {}
+  },
+  "autoload-dev"     : {
+    "psr-4": {
+      "App\\"                : "workbench/app/",
+      "Database\\Factories\\": "workbench/database/factories/",
+      "Database\\Seeders\\"  : "workbench/database/seeders/"
+    }
+  }
 }

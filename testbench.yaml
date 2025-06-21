@@ -1,5 +1,5 @@
 providers:
-  - Multiauth\MultiauthServiceProvider
+  - Ollieread\Multiauth\MultiauthServiceProvider
 
 migrations:
   - workbench/database/migrations
